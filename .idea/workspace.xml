@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f86b6e30-3f64-4fca-be1f-b730e35aa0f8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+    <list default="true" id="f86b6e30-3f64-4fca-be1f-b730e35aa0f8" name="Default Changelist" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,6 +39,21 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/checkstyle.xml" />
     <property name="settings.editor.selected.configurable" value="org.infernus.idea.checkstyle.CheckStyleConfigurable" />
   </component>
+  <component name="RunManager">
+    <configuration name="All in chapter_001-OOP" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chapter_001-OOP" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in chapter_001-OOP" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -65,31 +79,67 @@
       <option name="project" value="LOCAL" />
       <updated>1584731812968</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="second">
+      <created>1584732304547</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1584732304547</updated>
+    </task>
+    <task id="LOCAL-00004" summary="update">
+      <created>1584732529601</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1584732529601</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="first" />
-    <option name="LAST_COMMIT_MESSAGE" value="first" />
+    <MESSAGE value="second" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="486" y="53" key="CommitChangelistDialog2" timestamp="1584732354259">
+    <state x="486" y="53" key="CommitChangelistDialog2" timestamp="1584732705381">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="486" y="53" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1584732354259" />
+    <state x="486" y="53" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1584732705381" />
     <state x="690" y="223" key="FileChooserDialogImpl" timestamp="1584731562764">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="690" y="223" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1584731562764" />
+    <state width="1868" height="268" key="GridCell.Tab.0.bottom" timestamp="1584733672149">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1868" height="268" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1584733672149" />
+    <state width="1868" height="268" key="GridCell.Tab.0.center" timestamp="1584733672148">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1868" height="268" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1584733672148" />
+    <state width="1868" height="268" key="GridCell.Tab.0.left" timestamp="1584733672148">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1868" height="268" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1584733672148" />
+    <state width="1868" height="268" key="GridCell.Tab.0.right" timestamp="1584733672149">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1868" height="268" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1584733672149" />
     <state x="360" y="68" key="SettingsEditor" timestamp="1584731583153">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="360" y="68" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1584731583153" />
-    <state x="452" y="179" key="Vcs.Push.Dialog.v2" timestamp="1584732305971">
+    <state x="452" y="179" key="Vcs.Push.Dialog.v2" timestamp="1584732530826">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="452" y="179" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1584732305971" />
+    <state x="452" y="179" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1584732530826" />
+    <state x="762" y="291" key="chooseDestDirectoryDialog" timestamp="1584733211863">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="762" y="291" key="chooseDestDirectoryDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1584733211863" />
     <state x="744" y="423" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584732357739">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
