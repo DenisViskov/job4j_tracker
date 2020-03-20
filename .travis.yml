@@ -17,3 +17,7 @@ notifications:
       -DenisViskov16@gmail.com
     on_success: never # default: change
     on_failure: always # default: always
+
+    env:
+      global:
+        CODECOV_TOKEN="89b98c36-31f4-4401-b2e0-56a80e18360f"
