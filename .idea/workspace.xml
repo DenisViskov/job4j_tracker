@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f86b6e30-3f64-4fca-be1f-b730e35aa0f8" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ZPC2e2mOxiabdMtvGGSeONWSnR" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/checkstyle.xml" />
+    <property name="settings.editor.selected.configurable" value="org.infernus.idea.checkstyle.CheckStyleConfigurable" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f86b6e30-3f64-4fca-be1f-b730e35aa0f8" name="Default Changelist" comment="" />
+      <created>1584731135062</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584731135062</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="486" y="53" key="CommitChangelistDialog2" timestamp="1584731741755">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="486" y="53" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1584731741755" />
+    <state x="690" y="223" key="FileChooserDialogImpl" timestamp="1584731562764">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="690" y="223" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1584731562764" />
+    <state x="360" y="68" key="SettingsEditor" timestamp="1584731583153">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="360" y="68" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1584731583153" />
+    <state x="281" y="154" key="new project wizard" timestamp="1584731192594">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="281" y="154" key="new project wizard/0.0.1920.1050@0.0.1920.1050" timestamp="1584731192594" />
+  </component>
+</project>
