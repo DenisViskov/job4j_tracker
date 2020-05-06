@@ -24,6 +24,6 @@ public interface UserAction {
      * @param tracker - трекер
      * @return - true или false в зависимости от того вышел пользователь или нет
      */
-    boolean execute(Input input, Store tracker, Consumer<String> consumer);
+    boolean execute(Input input, Tracker tracker, Consumer<String> consumer);
 }
 

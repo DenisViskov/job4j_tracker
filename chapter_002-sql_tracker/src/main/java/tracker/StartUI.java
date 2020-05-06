@@ -19,7 +19,7 @@ public class StartUI {
      * @param tracker - трекер
      * @param actions - действия
      */
-    public void init(Input input, Store tracker, List<UserAction> actions) {
+    public void init(Input input, Tracker tracker, List<UserAction> actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
