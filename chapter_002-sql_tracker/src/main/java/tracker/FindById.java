@@ -25,7 +25,7 @@ public class FindById implements UserAction {
      * @param tracker - обьект tracker
      */
     @Override
-    public boolean execute(Input input, Tracker tracker, Consumer<String> consumer) {
+    public boolean execute(Input input, MemTracker tracker, Consumer<String> consumer) {
         String id = input.askStr("Enter ID: ");
         Item result = tracker.findById(id);
         consumer.accept("Item ID: " + result.getId() + " Item name: " + result.getName());

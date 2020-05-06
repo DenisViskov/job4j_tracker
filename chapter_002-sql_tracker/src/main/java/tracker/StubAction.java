@@ -31,7 +31,7 @@ public class StubAction implements UserAction {
      * @return - true или false
      */
     @Override
-    public boolean execute(Input input, Tracker tracker, Consumer<String> consumer) {
+    public boolean execute(Input input, MemTracker tracker, Consumer<String> consumer) {
         call = true;
         return false;
     }

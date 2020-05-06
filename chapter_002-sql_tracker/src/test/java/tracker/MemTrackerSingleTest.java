@@ -3,7 +3,7 @@ package tracker;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TrackerSingleTest {
+public class MemTrackerSingleTest {
     /**
      * Первый синглтон
      */

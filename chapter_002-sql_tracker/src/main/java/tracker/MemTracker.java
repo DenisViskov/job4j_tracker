@@ -12,7 +12,7 @@ import java.util.Random;
  * @version 1.1
  * @since 02.12.2019
  */
-public class Tracker {
+public class MemTracker {
     /**
      * Массив для хранение заявок.
      */

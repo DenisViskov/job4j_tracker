@@ -3,18 +3,17 @@ package tracker;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 
-public class TrackerTest {
+public class MemTrackerTest {
 
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("test1");
         tracker.add(item);
         Item result = tracker.findById(item.getId());
@@ -23,7 +22,7 @@ public class TrackerTest {
 
     @Test
     public void whenReplaceNameThenReturnNewName() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item previous = new Item("test1");
         tracker.add(previous);
         Item next = new Item("test2");
@@ -34,7 +33,7 @@ public class TrackerTest {
 
     @Test
     public void whenElementWasDeleted() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("TV");
         tracker.add(new Item("TV"));
         tracker.add(new Item("Radio"));
@@ -49,7 +48,7 @@ public class TrackerTest {
 
     @Test
     public void whenElementWasNotDeleted() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         tracker.add(new Item("TV"));
         tracker.add(new Item("Radio"));
         tracker.add(new Item("Guitar"));
@@ -63,7 +62,7 @@ public class TrackerTest {
     @Test
     public void findAllTest() {
         boolean expected = true;
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         tracker.add(new Item("TV"));
         tracker.add(new Item("Radio"));
         List<Item> out = tracker.findAll();
@@ -79,7 +78,7 @@ public class TrackerTest {
     @Test
     public void findByNameTest() {
         boolean expected = true;
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         tracker.add(new Item("TV"));
         tracker.add(new Item("Radio"));
         tracker.add(new Item("Guitar"));
@@ -96,7 +95,7 @@ public class TrackerTest {
     @Test
     public void notFoundByNameTest() {
         boolean expected = true;
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         tracker.add(new Item("TV"));
         tracker.add(new Item("Radio"));
         tracker.add(new Item("Guitar"));
@@ -112,7 +111,7 @@ public class TrackerTest {
 
     @Test
     public void whenfindByIdIsFoundTest() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         tracker.add(new Item("TV"));
         tracker.add(new Item("Radio"));
         tracker.add(new Item("Guitar"));
@@ -125,7 +124,7 @@ public class TrackerTest {
 
     @Test
     public void whenfindByIdIsNotFoundTest() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         tracker.add(new Item("TV"));
         tracker.add(new Item("Radio"));
         tracker.add(new Item("Guitar"));
