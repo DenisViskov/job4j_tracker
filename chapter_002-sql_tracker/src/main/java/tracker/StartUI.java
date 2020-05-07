@@ -47,7 +47,12 @@ public class StartUI {
         );
         try (Store tracker = new SqlTracker()) {
             tracker.init();
-            List<UserAction> actions = List.of(new CreateAction());
+            List<UserAction> actions = List.of(new CreateAction(),
+                    new DeleteItem(),
+                    new EditItem(),
+                    new FindById(),
+                    new FindByName(),
+                    new ShowItems());
             new StartUI().init(validate, tracker, actions);
         } catch (Exception e) {
             e.printStackTrace();
