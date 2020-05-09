@@ -84,14 +84,9 @@ public class SqlTracker implements Store {
 
     @Override
     public List<Item> findAll() {
-        List<Item> result = null;
-        int firstID = 1;
-        if (!validateStatement(firstID)) {
-            throw new NoSuchElementException("That id not found in Data Base");
-        }
+        List<Item> result = new ArrayList<>();
         try (PreparedStatement statement = cn.prepareStatement("select * from Items")) {
             ResultSet resultSet = statement.executeQuery();
-            result = new ArrayList<>();
             while (resultSet.next()) {
                 Item item = new Item(resultSet.getString("name"));
                 item.setId(String.valueOf(resultSet.getInt("id")));
@@ -105,12 +100,38 @@ public class SqlTracker implements Store {
 
     @Override
     public List<Item> findByName(String key) {
-        return null;
+        List<Item> result = new ArrayList<>();
+        try (PreparedStatement statement = cn.prepareStatement("select * from Items where name=?")) {
+            statement.setString(1, key);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Item item = new Item(resultSet.getString("name"));
+                item.setId(String.valueOf(resultSet.getInt("id")));
+                result.add(item);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @Override
     public Item findById(String id) {
-        return null;
+        Item result = null;
+        int idForDB = Integer.valueOf(id);
+        if (!validateStatement(idForDB)) {
+            throw new NoSuchElementException("That id not found in Data Base");
+        }
+        try (PreparedStatement statement = cn.prepareStatement("select * from Items where id = ?")) {
+            statement.setInt(1, idForDB);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            result = new Item(resultSet.getString("name"));
+            result.setId(String.valueOf(resultSet.getInt("id")));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @Override
@@ -126,7 +147,7 @@ public class SqlTracker implements Store {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
-            result = resultSet.getInt(1) > 0 ? true : false;
+            result = resultSet.getInt(1) == id ? true : false;
         } catch (SQLException e) {
             e.printStackTrace();
         }
