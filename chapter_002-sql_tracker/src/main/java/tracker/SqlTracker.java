@@ -8,14 +8,21 @@ import java.util.NoSuchElementException;
 import java.util.Properties;
 
 /**
+ * Class has realizes connect tracker to postgreSql
+ *
  * @author Денис Висков
  * @version 1.0
  * @since 06.05.2020
  */
 public class SqlTracker implements Store {
-
+    /**
+     * Connection
+     */
     private Connection cn;
 
+    /**
+     * Method execute initialization new connection to data base postgreSQL
+     */
     @Override
     public void init() {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
@@ -32,6 +39,12 @@ public class SqlTracker implements Store {
         }
     }
 
+    /**
+     * Method add new Item to data base
+     *
+     * @param item - item
+     * @return - Item
+     */
     @Override
     public Item add(Item item) {
         try (PreparedStatement statement = cn.prepareStatement("insert into Items(name) values (?)", Statement.RETURN_GENERATED_KEYS)) {
@@ -47,6 +60,13 @@ public class SqlTracker implements Store {
         return item;
     }
 
+    /**
+     * Method replace item in data base by given id
+     *
+     * @param id   - id
+     * @param item - item
+     * @return - true/false in dependency of result
+     */
     @Override
     public boolean replace(String id, Item item) {
         boolean result = false;
@@ -65,6 +85,12 @@ public class SqlTracker implements Store {
         return result;
     }
 
+    /**
+     * Method has realizes delete item from data base by given ID
+     *
+     * @param id - id
+     * @return - true/false in dependency of result
+     */
     @Override
     public boolean delete(String id) {
         boolean result = false;
@@ -82,6 +108,11 @@ public class SqlTracker implements Store {
         return result;
     }
 
+    /**
+     * Method returns list of Items from data base
+     *
+     * @return - List of Items
+     */
     @Override
     public List<Item> findAll() {
         List<Item> result = new ArrayList<>();
@@ -98,6 +129,12 @@ public class SqlTracker implements Store {
         return result;
     }
 
+    /**
+     * Method has looking for Item by given name in parameters
+     *
+     * @param key - name
+     * @return - List of Items
+     */
     @Override
     public List<Item> findByName(String key) {
         List<Item> result = new ArrayList<>();
@@ -115,6 +152,12 @@ public class SqlTracker implements Store {
         return result;
     }
 
+    /**
+     * Method has looking for Item by ID
+     *
+     * @param id - id
+     * @return - Item
+     */
     @Override
     public Item findById(String id) {
         Item result = null;
@@ -134,6 +177,11 @@ public class SqlTracker implements Store {
         return result;
     }
 
+    /**
+     * Method overrides close method from AutoClosable Interface for correctly close stream
+     *
+     * @throws Exception
+     */
     @Override
     public void close() throws Exception {
         if (cn != null) {
@@ -141,6 +189,12 @@ public class SqlTracker implements Store {
         }
     }
 
+    /**
+     * In that method executing validation our sql statement by given ID on existing object in data base
+     *
+     * @param id - id
+     * @return - true/false in dependency of result
+     */
     private boolean validateStatement(int id) {
         boolean result = false;
         try (PreparedStatement statement = cn.prepareStatement("select id from Items where id = ?")) {
