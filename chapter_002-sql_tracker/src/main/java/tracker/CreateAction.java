@@ -25,7 +25,7 @@ public class CreateAction implements UserAction {
      * @param tracker - обьект tracker
      */
     @Override
-    public boolean execute(Input input, MemTracker tracker, Consumer<String> consumer) {
+    public boolean execute(Input input, Tracker tracker, Consumer<String> consumer) {
         String name = input.askStr("Enter name: ");
         Item item = new Item(name);
         tracker.add(item);

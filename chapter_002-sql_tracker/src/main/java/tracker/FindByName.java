@@ -26,7 +26,7 @@ public class FindByName implements UserAction {
      * @param tracker - обьект tracker
      */
     @Override
-    public boolean execute(Input input, MemTracker tracker, Consumer<String> consumer) {
+    public boolean execute(Input input, Tracker tracker, Consumer<String> consumer) {
         String name = input.askStr("Enter Name: ");
         List<Item> result = tracker.findByName(name);
         for (Item item : result) {

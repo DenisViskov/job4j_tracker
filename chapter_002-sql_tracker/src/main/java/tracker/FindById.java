@@ -25,12 +25,15 @@ public class FindById implements UserAction {
      * @param tracker - обьект tracker
      */
     @Override
-    public boolean execute(Input input, MemTracker tracker, Consumer<String> consumer) {
+    public boolean execute(Input input, Tracker tracker, Consumer<String> consumer) {
         String id = input.askStr("Enter ID: ");
         Item result = tracker.findById(id);
+        if (result == null) {
+            consumer.accept("If you see this message it mean your entered ID it was not found");
+            consumer.accept("Try again");
+            return false;
+        }
         consumer.accept("Item ID: " + result.getId() + " Item name: " + result.getName());
-        consumer.accept("If you see this message it mean your entered ID it was not found");
-        consumer.accept("Try again");
         return true;
     }
 }

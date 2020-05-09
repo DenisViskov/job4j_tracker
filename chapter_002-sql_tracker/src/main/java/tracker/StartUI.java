@@ -19,7 +19,7 @@ public class StartUI {
      * @param tracker - трекер
      * @param actions - действия
      */
-    public void init(Input input, MemTracker tracker, List<UserAction> actions) {
+    public void init(Input input, Tracker tracker, List<UserAction> actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
@@ -42,16 +42,20 @@ public class StartUI {
     }
 
     public static void main(String[] args) {
-        Input input = new ConsoleInput();
-        Input validate = new ValidateInput(input);
-        MemTracker tracker = new MemTracker();
-        List<UserAction> actions = new ArrayList<>();
-        actions.add(new CreateAction());
-        actions.add(new ShowItems());
-        actions.add(new EditItem());
-        actions.add(new DeleteItem());
-        actions.add(new FindById());
-        actions.add(new FindByName());
-        new StartUI().init(validate, tracker, actions);
+        Input validate = new ValidateInput(
+                new ConsoleInput()
+        );
+        try (Store tracker = new SqlTracker()) {
+            tracker.init();
+            List<UserAction> actions = List.of(new CreateAction(),
+                    new DeleteItem(),
+                    new EditItem(),
+                    new FindById(),
+                    new FindByName(),
+                    new ShowItems());
+            new StartUI().init(validate, tracker, actions);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
