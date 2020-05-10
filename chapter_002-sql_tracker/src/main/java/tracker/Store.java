@@ -1,6 +1,6 @@
 package tracker;
 
-import java.util.List;
+import java.sql.Connection;
 
 /**
  * Interface for realizes database hold
@@ -12,6 +12,8 @@ import java.util.List;
 public interface Store extends AutoCloseable, Tracker {
     /**
      * Method should do initialization new database
+     *
+     * @return - Connection
      */
-    void init();
+    Connection init();
 }
