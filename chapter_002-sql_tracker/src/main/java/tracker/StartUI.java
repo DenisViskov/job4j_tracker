@@ -1,5 +1,6 @@
 package tracker;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,7 +45,7 @@ public class StartUI {
         Input validate = new ValidateInput(
                 new ConsoleInput()
         );
-        try (Store tracker = new SqlTracker(cn)) {
+        try (Store tracker = new SqlTracker()) {
             tracker.init();
             List<UserAction> actions = List.of(new CreateAction(),
                     new DeleteItem(),

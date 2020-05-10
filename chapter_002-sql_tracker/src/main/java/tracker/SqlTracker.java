@@ -18,27 +18,22 @@ public class SqlTracker implements Store {
     /**
      * Connection
      */
-    private final Connection connection;
-
-    public SqlTracker(Connection connection) {
-        this.connection = connection;
-    }
+    private Connection cn;
 
     /**
      * Method execute initialization new connection to data base postgreSQL
-     *
-     * @return - Connection
      */
     @Override
-    public Connection init() {
+    public void init() {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
             Properties config = new Properties();
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
-            return DriverManager.getConnection(
+            cn = DriverManager.getConnection(
                     config.getProperty("url"),
                     config.getProperty("username"),
-                    config.getProperty("password"));
+                    config.getProperty("password")
+            );
         } catch (Exception e) {
             throw new IllegalStateException(e);
         }
@@ -52,7 +47,7 @@ public class SqlTracker implements Store {
      */
     @Override
     public Item add(Item item) {
-        try (PreparedStatement statement = connection.prepareStatement("insert into Items(name) values (?)", Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement statement = cn.prepareStatement("insert into Items(name) values (?)", Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, item.getName());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
@@ -79,7 +74,7 @@ public class SqlTracker implements Store {
         if (!validateStatement(idForDB)) {
             throw new NoSuchElementException("That id not found in Data Base");
         }
-        try (PreparedStatement statement = connection.prepareStatement("update Items set name = ? where id = ?")) {
+        try (PreparedStatement statement = cn.prepareStatement("update Items set name = ? where id = ?")) {
             statement.setString(1, item.getName());
             statement.setInt(2, idForDB);
             statement.executeUpdate();
@@ -103,7 +98,7 @@ public class SqlTracker implements Store {
         if (!validateStatement(idForDB)) {
             throw new NoSuchElementException("That id not found in Data Base");
         }
-        try (PreparedStatement statement = connection.prepareStatement("delete from Items where id = ?")) {
+        try (PreparedStatement statement = cn.prepareStatement("delete from Items where id = ?")) {
             statement.setInt(1, idForDB);
             statement.executeUpdate();
             result = true;
@@ -121,7 +116,7 @@ public class SqlTracker implements Store {
     @Override
     public List<Item> findAll() {
         List<Item> result = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement("select * from Items")) {
+        try (PreparedStatement statement = cn.prepareStatement("select * from Items")) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Item item = new Item(resultSet.getString("name"));
@@ -143,7 +138,7 @@ public class SqlTracker implements Store {
     @Override
     public List<Item> findByName(String key) {
         List<Item> result = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement("select * from Items where name=?")) {
+        try (PreparedStatement statement = cn.prepareStatement("select * from Items where name=?")) {
             statement.setString(1, key);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -170,7 +165,7 @@ public class SqlTracker implements Store {
         if (!validateStatement(idForDB)) {
             throw new NoSuchElementException("That id not found in Data Base");
         }
-        try (PreparedStatement statement = connection.prepareStatement("select * from Items where id = ?")) {
+        try (PreparedStatement statement = cn.prepareStatement("select * from Items where id = ?")) {
             statement.setInt(1, idForDB);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
@@ -189,8 +184,8 @@ public class SqlTracker implements Store {
      */
     @Override
     public void close() throws Exception {
-        if (connection != null) {
-            connection.close();
+        if (cn != null) {
+            cn.close();
         }
     }
 
@@ -202,7 +197,7 @@ public class SqlTracker implements Store {
      */
     private boolean validateStatement(int id) {
         boolean result = false;
-        try (PreparedStatement statement = connection.prepareStatement("select id from Items where id = ?")) {
+        try (PreparedStatement statement = cn.prepareStatement("select id from Items where id = ?")) {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
