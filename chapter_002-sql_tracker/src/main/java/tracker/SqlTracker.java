@@ -20,6 +20,13 @@ public class SqlTracker implements Store {
      */
     private Connection cn;
 
+    public SqlTracker(Connection cn) {
+        this.cn = cn;
+    }
+
+    public SqlTracker() {
+    }
+
     /**
      * Method execute initialization new connection to data base postgreSQL
      */
