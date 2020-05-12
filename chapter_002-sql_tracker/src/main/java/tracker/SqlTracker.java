@@ -57,9 +57,11 @@ public class SqlTracker implements Store {
         try (PreparedStatement statement = cn.prepareStatement("insert into Items(name) values (?)", Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, item.getName());
             statement.executeUpdate();
-            ResultSet resultSet = statement.getGeneratedKeys();
-            resultSet.next();
-            int id = resultSet.getInt(1);
+            int id;
+            try (ResultSet resultSet = statement.getGeneratedKeys()) {
+                resultSet.next();
+                id = resultSet.getInt(1);
+            }
             item.setId(String.valueOf(id));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -79,13 +81,13 @@ public class SqlTracker implements Store {
         boolean result = false;
         int idForDB = Integer.valueOf(id);
         if (!validateStatement(idForDB)) {
-            throw new NoSuchElementException("That id not found in Data Base");
+            return result;
         }
         try (PreparedStatement statement = cn.prepareStatement("update Items set name = ? where id = ?")) {
             statement.setString(1, item.getName());
             statement.setInt(2, idForDB);
-            statement.executeUpdate();
-            result = true;
+            int replacedCount = statement.executeUpdate();
+            result = replacedCount > 0 ? true : false;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -103,12 +105,12 @@ public class SqlTracker implements Store {
         boolean result = false;
         int idForDB = Integer.valueOf(id);
         if (!validateStatement(idForDB)) {
-            throw new NoSuchElementException("That id not found in Data Base");
+            return result;
         }
         try (PreparedStatement statement = cn.prepareStatement("delete from Items where id = ?")) {
             statement.setInt(1, idForDB);
-            statement.executeUpdate();
-            result = true;
+            int replacedCount = statement.executeUpdate();
+            result = replacedCount > 0 ? true : false;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -123,8 +125,8 @@ public class SqlTracker implements Store {
     @Override
     public List<Item> findAll() {
         List<Item> result = new ArrayList<>();
-        try (PreparedStatement statement = cn.prepareStatement("select * from Items")) {
-            ResultSet resultSet = statement.executeQuery();
+        try (PreparedStatement statement = cn.prepareStatement("select * from Items");
+             ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 Item item = new Item(resultSet.getString("name"));
                 item.setId(String.valueOf(resultSet.getInt("id")));
@@ -147,11 +149,12 @@ public class SqlTracker implements Store {
         List<Item> result = new ArrayList<>();
         try (PreparedStatement statement = cn.prepareStatement("select * from Items where name=?")) {
             statement.setString(1, key);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                Item item = new Item(resultSet.getString("name"));
-                item.setId(String.valueOf(resultSet.getInt("id")));
-                result.add(item);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Item item = new Item(resultSet.getString("name"));
+                    item.setId(String.valueOf(resultSet.getInt("id")));
+                    result.add(item);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -170,14 +173,15 @@ public class SqlTracker implements Store {
         Item result = null;
         int idForDB = Integer.valueOf(id);
         if (!validateStatement(idForDB)) {
-            throw new NoSuchElementException("That id not found in Data Base");
+            return null;
         }
         try (PreparedStatement statement = cn.prepareStatement("select * from Items where id = ?")) {
             statement.setInt(1, idForDB);
-            ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            result = new Item(resultSet.getString("name"));
-            result.setId(String.valueOf(resultSet.getInt("id")));
+            try (ResultSet resultSet = statement.executeQuery()) {
+                resultSet.next();
+                result = new Item(resultSet.getString("name"));
+                result.setId(String.valueOf(resultSet.getInt("id")));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
