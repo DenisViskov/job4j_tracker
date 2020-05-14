@@ -80,9 +80,6 @@ public class SqlTracker implements Store {
     public boolean replace(String id, Item item) {
         boolean result = false;
         int idForDB = Integer.valueOf(id);
-        if (!validateStatement(idForDB)) {
-            return result;
-        }
         try (PreparedStatement statement = cn.prepareStatement("update Items set name = ? where id = ?")) {
             statement.setString(1, item.getName());
             statement.setInt(2, idForDB);
@@ -104,9 +101,6 @@ public class SqlTracker implements Store {
     public boolean delete(String id) {
         boolean result = false;
         int idForDB = Integer.valueOf(id);
-        if (!validateStatement(idForDB)) {
-            return result;
-        }
         try (PreparedStatement statement = cn.prepareStatement("delete from Items where id = ?")) {
             statement.setInt(1, idForDB);
             int replacedCount = statement.executeUpdate();
@@ -172,9 +166,6 @@ public class SqlTracker implements Store {
     public Item findById(String id) {
         Item result = null;
         int idForDB = Integer.valueOf(id);
-        if (!validateStatement(idForDB)) {
-            return null;
-        }
         try (PreparedStatement statement = cn.prepareStatement("select * from Items where id = ?")) {
             statement.setInt(1, idForDB);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -198,24 +189,5 @@ public class SqlTracker implements Store {
         if (cn != null) {
             cn.close();
         }
-    }
-
-    /**
-     * In that method executing validation our sql statement by given ID on existing object in data base
-     *
-     * @param id - id
-     * @return - true/false in dependency of result
-     */
-    private boolean validateStatement(int id) {
-        boolean result = false;
-        try (PreparedStatement statement = cn.prepareStatement("select id from Items where id = ?")) {
-            statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            result = resultSet.getInt(1) == id ? true : false;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return result;
     }
 }
