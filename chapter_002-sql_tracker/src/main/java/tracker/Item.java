@@ -1,6 +1,8 @@
 package tracker;
 
 
+import javax.persistence.*;
+
 /**
  * Класс модель Item - описывает бизнес модель заявки
  *
@@ -8,16 +10,23 @@ package tracker;
  * @version 1.0
  * @since 02.12.2019
  */
+@Entity
+@Table(name = "items")
 public class Item {
     /**
      * Уникальный ключ
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     /**
      * Имя
      */
     private String name;
+
+    public Item() {
+    }
 
     public Item(String name) {
         this.name = name;
