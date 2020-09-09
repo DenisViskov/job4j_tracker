@@ -10,14 +10,10 @@ import javax.persistence.*;
  * @version 1.0
  * @since 02.12.2019
  */
-@Entity
-@Table(name = "items")
 public class Item {
     /**
      * Уникальный ключ
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     /**
