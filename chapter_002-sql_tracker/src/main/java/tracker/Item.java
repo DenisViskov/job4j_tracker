@@ -1,6 +1,8 @@
 package tracker;
 
 
+import javax.persistence.*;
+
 /**
  * Класс модель Item - описывает бизнес модель заявки
  *
@@ -18,6 +20,9 @@ public class Item {
      * Имя
      */
     private String name;
+
+    public Item() {
+    }
 
     public Item(String name) {
         this.name = name;
