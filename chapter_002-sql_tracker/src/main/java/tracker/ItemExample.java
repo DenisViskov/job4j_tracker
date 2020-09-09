@@ -49,11 +49,15 @@ public class ItemExample {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         ItemExample that = (ItemExample) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(name, that.name);
+        return Objects.equals(id, that.id)
+                && Objects.equals(name, that.name);
     }
 
     @Override
@@ -63,9 +67,9 @@ public class ItemExample {
 
     @Override
     public String toString() {
-        return "{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+        return "{"
+                + "id='" + id + '\''
+                + ", name='" + name + '\''
+                + '}';
     }
 }
