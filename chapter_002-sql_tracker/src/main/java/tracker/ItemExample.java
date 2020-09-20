@@ -1,6 +1,7 @@
 package tracker;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 /**
@@ -23,6 +24,16 @@ public class ItemExample {
      * Name
      */
     private String name;
+
+    /**
+     * Description
+     */
+    private String description;
+
+    /**
+     * Time created
+     */
+    private Timestamp created;
 
     public ItemExample() {
     }
@@ -47,6 +58,22 @@ public class ItemExample {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Timestamp getCreated() {
+        return created;
+    }
+
+    public void setCreated(Timestamp created) {
+        this.created = created;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -57,12 +84,14 @@ public class ItemExample {
         }
         ItemExample that = (ItemExample) o;
         return Objects.equals(id, that.id)
-                && Objects.equals(name, that.name);
+                && Objects.equals(name, that.name)
+                && Objects.equals(description, that.description)
+                && Objects.equals(created, that.created);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, name, description, created);
     }
 
     @Override
