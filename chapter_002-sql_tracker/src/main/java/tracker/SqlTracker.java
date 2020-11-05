@@ -133,6 +133,22 @@ public class SqlTracker implements Store {
     }
 
     /**
+     * Method overloads findAll used reactive programming
+     */
+    public void findAll(Observe<Item> observe) {
+        try (PreparedStatement statement = cn.prepareStatement("select * from Items");
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                Item item = new Item(resultSet.getString("name"));
+                item.setId(String.valueOf(resultSet.getInt("id")));
+                observe.receive(item);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Method has looking for Item by given name in parameters
      *
      * @param key - name
